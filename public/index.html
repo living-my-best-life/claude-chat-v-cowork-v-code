@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Cowork: The Ultimate Guide for GTM Leaders | AI Business Network</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* ABN Brand Palette */
+    --abn-dark: #0a0619;
+    --abn-light: #ffffff;
+    --abn-ocean: #35a0c4;
+    --abn-royal: #216fdf;
+    --abn-mint: #57ec99;
+    --abn-coral: #fc8852;
+    --abn-pink: #fc4e99;
+    --abn-teal: #39b6ba;
+    --abn-gold: #fcae26;
+    --abn-gradient-pink-purple: linear-gradient(135deg, #f31dd5, #7377ff);
+    --abn-gradient-blue-teal: linear-gradient(135deg, #2867ec, #1b8190);
+
+    /* Surface system */
+    --surface: #0f0c22;
+    --surface-card: #130f28;
+    --surface-raised: #1a1438;
+    --border: rgba(255,255,255,0.08);
+
+    /* Text */
+    --text-primary: #f0f0f5;
+    --text-secondary: rgba(240,240,245,0.65);
+    --text-muted: rgba(240,240,245,0.38);
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--abn-dark);
+    color: var(--text-primary);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Reading Progress Bar */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: var(--abn-gradient-pink-purple);
+    z-index: 1000;
+    transition: width 0.1s linear;
+    border-radius: 0 2px 2px 0;
+  }
+
+  /* Top Bar */
+  .top-bar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 11px 0;
+    text-align: center;
+    font-size: 0.81rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.02em;
+  }
+  .top-bar a {
+    color: var(--abn-ocean);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  .top-bar a:hover { color: var(--white); }
+
+  /* Header */
+  header {
+    background: var(--abn-dark);
+    padding: 80px 0 64px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -60px;
+    width: 560px;
+    height: 560px;
+    background: radial-gradient(circle, rgba(33,111,223,0.14) 0%, transparent 68%);
+    pointer-events: none;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -80px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(243,29,213,0.07) 0%, transparent 68%);
+    pointer-events: none;
+  }
+
+  .header-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(115,119,255,0.12);
+    border: 1px solid rgba(115,119,255,0.28);
+    color: #a78bfa;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+  .badge svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+  h1 {
+    font-size: 2.75rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -0.035em;
+  }
+  h1 .highlight {
+    background: var(--abn-gradient-blue-teal);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.78;
+    max-width: 600px;
+  }
+
+  .reading-meta {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 16px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+  .reading-meta span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .reading-meta svg { width: 13px; height: 13px; }
+
+  /* Author bar */
+  .author-bar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+  }
+  .author-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--abn-gradient-pink-purple);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: white;
+    flex-shrink: 0;
+  }
+  .author-info { font-size: 0.88rem; line-height: 1.5; }
+  .author-name { font-weight: 600; color: var(--text-primary); }
+  .author-role { color: var(--text-muted); font-size: 0.79rem; margin-top: 1px; }
+
+  /* Main */
+  main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 52px 24px 80px;
+  }
+
+  /* TOC */
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 56px;
+  }
+  .toc-title {
+    font-size: 0.69rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+  }
+  .toc ol { list-style: none; counter-reset: toc; }
+  .toc li {
+    counter-increment: toc;
+    margin-bottom: 4px;
+  }
+  .toc li a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: color 0.2s;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 5px 0;
+    cursor: pointer;
+  }
+  .toc li a::before {
+    content: counter(toc) ".";
+    color: var(--abn-ocean);
+    font-weight: 700;
+    font-size: 0.8rem;
+    min-width: 22px;
+    flex-shrink: 0;
+  }
+  .toc li a:hover { color: var(--white); }
+  .toc li a.active { color: var(--abn-ocean); }
+
+  /* Sections */
+  .section { margin-bottom: 60px; scroll-margin-top: 24px; }
+  .section-divider {
+    width: 48px;
+    height: 3px;
+    background: var(--abn-gradient-blue-teal);
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+
+  h2 {
+    font-size: 1.65rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: -0.025em;
+    line-height: 1.22;
+  }
+  h2 .section-num { color: var(--abn-ocean); font-weight: 800; }
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 36px 0 14px;
+    color: var(--text-primary);
+  }
+
+  p {
+    margin-bottom: 18px;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+  p strong { color: var(--text-primary); font-weight: 600; }
+  p code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.84em;
+    background: rgba(53,160,196,0.1);
+    color: var(--abn-ocean);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(53,160,196,0.18);
+  }
+
+  /* Callouts */
+  .callout {
+    background: rgba(33,111,223,0.05);
+    border: 1px solid rgba(33,111,223,0.15);
+    border-left: 3px solid var(--abn-royal);
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px;
+    margin: 28px 0;
+    font-size: 0.95rem;
+  }
+  .callout.tip {
+    border-left-color: var(--abn-mint);
+    background: rgba(87,236,153,0.04);
+    border-color: rgba(87,236,153,0.15);
+    border-left-color: var(--abn-mint);
+  }
+  .callout.warning {
+    border-left-color: var(--abn-coral);
+    background: rgba(252,136,82,0.04);
+    border-color: rgba(252,136,82,0.15);
+    border-left-color: var(--abn-coral);
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.69rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    margin-bottom: 10px;
+    color: var(--abn-royal);
+  }
+  .callout.tip .callout-label { color: var(--abn-mint); }
+  .callout.warning .callout-label { color: var(--abn-coral); }
+  .callout-label svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+  /* Feature cards */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 28px 0;
+  }
+  .feature-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .feature-card:hover {
+    border-color: rgba(33,111,223,0.35);
+    box-shadow: 0 4px 24px rgba(33,111,223,0.07);
+  }
+  .feature-card .card-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+    background: rgba(33,111,223,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    color: var(--abn-ocean);
+  }
+  .feature-card .card-icon svg { width: 18px; height: 18px; }
+  .feature-card h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 7px;
+    color: var(--text-primary);
+  }
+  .feature-card p {
+    font-size: 0.83rem;
+    margin-bottom: 0;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* Comparison table */
+  .comparison-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 28px 0;
+    background: var(--surface);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    font-size: 0.88rem;
+  }
+  .comparison-table thead { background: rgba(33,111,223,0.08); }
+  .comparison-table th {
+    padding: 14px 18px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .comparison-table td {
+    padding: 12px 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--text-secondary);
+    vertical-align: middle;
+  }
+  .comparison-table tbody tr:hover { background: rgba(255,255,255,0.015); }
+  .comparison-table tr:last-child td { border-bottom: none; }
+  .comparison-table td:first-child {
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+  }
+  .check {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--abn-mint);
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+  .check svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .cross { color: var(--text-muted); font-size: 0.85rem; }
+
+  /* Code blocks */
+  .code-block {
+    background: #07041a;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 24px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.79rem;
+    line-height: 1.85;
+    overflow-x: auto;
+    color: var(--text-secondary);
+    position: relative;
+  }
+  .code-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: var(--abn-gradient-blue-teal);
+    opacity: 0.5;
+    border-radius: 12px 12px 0 0;
+  }
+  .code-block .comment { color: rgba(255,255,255,0.25); }
+  .code-block .key { color: var(--abn-ocean); }
+  .code-block .string { color: var(--abn-mint); }
+
+  /* Plugin cards */
+  .plugin-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .plugin-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 14px;
+    text-align: center;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .plugin-card:hover {
+    border-color: rgba(53,160,196,0.35);
+    box-shadow: 0 4px 20px rgba(53,160,196,0.06);
+  }
+  .plugin-card .plugin-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: rgba(53,160,196,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    color: var(--abn-ocean);
+  }
+  .plugin-card .plugin-icon svg { width: 20px; height: 20px; }
+  .plugin-card .name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+  }
+  .plugin-card .desc {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* Scenario blocks */
+  .scenario {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 24px 0;
+  }
+  .scenario-header {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.69rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    color: var(--abn-royal);
+    margin-bottom: 14px;
+  }
+  .scenario-header svg { width: 13px; height: 13px; }
+  .scenario-prompt {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.84rem;
+    color: var(--text-primary);
+    background: rgba(33,111,223,0.07);
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    border-left: 3px solid var(--abn-royal);
+    line-height: 1.65;
+  }
+  .scenario-result {
+    font-size: 0.87rem;
+    color: var(--text-secondary);
+    line-height: 1.72;
+  }
+  .scenario-result ul { list-style: none; padding: 0; }
+  .scenario-result li {
+    padding: 5px 0 5px 22px;
+    position: relative;
+  }
+  .scenario-result li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--abn-ocean);
+    font-weight: 600;
+  }
+
+  /* Link list */
+  .link-list { list-style: none; padding: 0; margin: 20px 0; }
+  .link-list li {
+    padding: 11px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .link-list li:last-child { border-bottom: none; }
+  .link-list .bullet {
+    color: var(--abn-ocean);
+    font-weight: 700;
+    flex-shrink: 0;
+    font-size: 0.88rem;
+    margin-top: 1px;
+  }
+  .link-list .link-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.88rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .link-list .link-desc {
+    color: var(--text-muted);
+    font-size: 0.83rem;
+    margin-top: 2px;
+  }
+
+  /* MCP type cards */
+  .mcp-types {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .mcp-type {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+  .mcp-type:hover { border-color: rgba(53,160,196,0.3); }
+  .mcp-type .label {
+    font-size: 0.67rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--abn-ocean);
+    margin-bottom: 8px;
+  }
+  .mcp-type .title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 7px;
+  }
+  .mcp-type .info {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.56;
+  }
+
+  /* Steps */
+  .steps { list-style: none; padding: 0; margin: 20px 0; counter-reset: step; }
+  .steps li {
+    counter-increment: step;
+    padding: 13px 0 13px 52px;
+    position: relative;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--text-secondary);
+    font-size: 0.94rem;
+    line-height: 1.65;
+  }
+  .steps li:last-child { border-bottom: none; }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    background: rgba(33,111,223,0.12);
+    border: 1px solid rgba(33,111,223,0.22);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--abn-ocean);
+    top: 13px;
+  }
+
+  /* Bottom CTA */
+  .bottom-cta {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    margin-top: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .bottom-cta::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--abn-gradient-pink-purple);
+  }
+  .bottom-cta::after {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%;
+    transform: translateX(-50%);
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(33,111,223,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .bottom-cta h3 {
+    font-size: 1.4rem;
+    margin: 0 0 12px;
+    color: var(--white);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    position: relative;
+    z-index: 1;
+  }
+  .bottom-cta p {
+    color: var(--text-muted);
+    max-width: 460px;
+    margin: 0 auto 28px;
+    font-size: 0.93rem;
+    position: relative;
+    z-index: 1;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 9px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .btn-primary {
+    background: var(--abn-royal);
+    color: white;
+  }
+  .btn-primary:hover {
+    background: #2d7ff0;
+    box-shadow: 0 4px 20px rgba(33,111,223,0.35);
+    transform: translateY(-1px);
+  }
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+  .btn-secondary:hover {
+    border-color: rgba(53,160,196,0.45);
+    color: var(--white);
+    background: rgba(53,160,196,0.06);
+  }
+
+  /* Back to top */
+  .back-to-top {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 42px;
+    height: 42px;
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.25s;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 50;
+  }
+  .back-to-top.visible {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .back-to-top:hover {
+    border-color: var(--abn-ocean);
+    color: var(--abn-ocean);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    transform: translateY(-2px);
+  }
+  .back-to-top svg { width: 16px; height: 16px; }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 0;
+    text-align: center;
+    font-size: 0.79rem;
+    color: var(--text-muted);
+  }
+  footer a { color: var(--abn-ocean); text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: var(--white); }
+
+  /* Focus states */
+  a:focus-visible {
+    outline: 2px solid var(--abn-ocean);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    h1 { font-size: 1.9rem; }
+    .feature-grid, .plugin-grid, .mcp-types { grid-template-columns: 1fr; }
+    .comparison-table { font-size: 0.79rem; }
+    .comparison-table th, .comparison-table td { padding: 10px 12px; }
+    header { padding: 52px 0 44px; }
+    main { padding: 32px 16px 60px; }
+    .bottom-cta { padding: 32px 20px; }
+    .back-to-top { bottom: 20px; right: 20px; }
+    .toc { padding: 22px 20px; }
+  }
+  @media (max-width: 480px) {
+    .plugin-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- Top Bar -->
+<div class="top-bar">
+  From the <a href="https://www.aibusinessnetwork.ai/">AI Business Network</a> — Exclusive resources for business leaders building with AI
+</div>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <div class="badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+      </svg>
+      GTM Operators Guide
+    </div>
+
+    <h1>Claude Cowork:<br>The Ultimate Guide for <span class="highlight">GTM Leaders</span></h1>
+
+    <p class="subtitle">Everyone's hyping Claude Code. But if you're not an engineer, Cowork might be the highest-leverage AI tool on your desktop right now — and almost nobody in GTM is talking about it.</p>
+
+    <div class="reading-meta">
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        12 min read
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        7 sections
+      </span>
+      <span>February 2026</span>
+    </div>
+
+    <div class="author-bar">
+      <div class="author-avatar">JM</div>
+      <div class="author-info">
+        <div class="author-name">Jonathan Moss</div>
+        <div class="author-role">EVP Growth &amp; Operations, Experity &nbsp;·&nbsp; Host, AI Business Network &nbsp;·&nbsp; Revenue Architect, WbD</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main>
+  <p>Anthropic just shipped Claude Cowork for Windows and Intel-based macOS with full feature parity to the January release. It's available on Pro, Max, Team, and Enterprise plans.</p>
+  <p>I'm a former engineer. I can use the terminal. But prototyping aside, I choose Cowork for day-to-day GTM work: building competitive battlecards, prepping for board reviews, analyzing pipeline data, drafting outbound sequences, and structuring QBRs. Same model as Claude Code. Same skill format, same connectors. The difference? <strong>You don't need to know git, tmux, or CLI flags to get there.</strong></p>
+  <p>If you lead marketing, sales, CS, RevOps, or enablement — this is for you. Here's everything you need to know.</p>
+
+  <!-- TOC -->
+  <div class="toc">
+    <div class="toc-title">What's Inside</div>
+    <ol>
+      <li><a href="#section-1">What Cowork Actually Is</a></li>
+      <li><a href="#section-2">Cowork vs. Chat: Why It's a Different Beast</a></li>
+      <li><a href="#section-3">Plugins and Skills for GTM</a></li>
+      <li><a href="#section-4">MCPs: Connecting Cowork to Your GTM Stack</a></li>
+      <li><a href="#section-5">Scheduled Tasks</a></li>
+      <li><a href="#section-6">A 1-Minute Hack That Makes Claude Desktop 2x More Powerful</a></li>
+      <li><a href="#section-7">How to Give Claude Cowork Cross-Session Memory</a></li>
+    </ol>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section" id="section-1">
+    <div class="section-divider"></div>
+    <h2><span class="section-num">1.</span> What Cowork Actually Is</h2>
+    <p>Cowork is not a chat interface with a new skin. It's an autonomous desktop agent built into the Claude Desktop app.</p>
+    <p>When you open the Cowork tab, you're giving Claude access to a sandboxed Linux VM on your machine. Inside that sandbox, Claude can write code, execute scripts, create files — real Word docs, slide decks, spreadsheets, PDFs — and connect to services like Gmail, HubSpot, Slack, and Google Drive. You don't configure the infrastructure. Anthropic manages it.</p>
+    <p>You describe what you need. Cowork plans the work, breaks it into sub-agents that run in parallel, and delivers output as clickable files you can open directly.</p>
+
+    <div class="callout">
+      <div class="callout-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        GTM Example
+      </div>
+      <p>"Build a competitive battlecard for Gong vs. our platform. Pull from their recent blog posts, G2 reviews, and their latest pricing page. Output as a Word doc I can share with the sales team."</p>
+      <p style="margin-top: 8px;">Cowork plans the research, spawns parallel sub-agents for each source, synthesizes findings, and drops a formatted .docx into your folder. Not an artifact in a chat bubble — a real file you can edit in Word.</p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+        </div>
+        <h4>Plans &amp; Tracks Work</h4>
+        <p>Decomposes complex GTM tasks into subtasks. You watch progress in real time and steer mid-task.</p>
+      </div>
+      <div class="feature-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+          </svg>
+        </div>
+        <h4>Parallel Sub-Agents</h4>
+        <p>Spawns independent Claude instances that work on different parts simultaneously. Research + writing + formatting at once.</p>
+      </div>
+      <div class="feature-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"/>
+          </svg>
+        </div>
+        <h4>Real Files</h4>
+        <p>Creates actual .docx, .pptx, .xlsx, and .pdf files — delivered to your folder, ready to edit and share.</p>
+      </div>
+      <div class="feature-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/>
+          </svg>
+        </div>
+        <h4>Connected to Your Stack</h4>
+        <p>Gmail, GitHub, Slack, Google Drive via built-in connectors. Plus any tool via MCP servers.</p>
+      </div>
+    </div>
+
+    <div class="callout warning">
+      <div class="callout-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Keep in Mind
+      </div>
+      <p>Cowork runs sandboxed — it can't touch your OS or files outside the folder you shared. But inside that folder, it has full read/write/delete access. Grant folder access intentionally.</p>
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section" id="section-2">
+    <div class="section-divider"></div>
+    <h2><span class="section-num">2.</span> Cowork vs. Chat: Why It's a Different Beast</h2>
+    <p>You're already using Claude Chat in the Desktop app. So what does Cowork add? Here's the honest breakdown.</p>
+
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Capability</th>
+          <th>Chat</th>
+          <th>Cowork</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Task decomposition</td>
+          <td class="cross">Manual only</td>
+          <td class="check"><svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd"/></svg> Automatic planning</td>
+        </tr>
+        <tr>
+          <td>Sub-agent coordination</td>
+          <td class="cross">None</td>
+          <td class="check"><svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd"/></svg> Parallel sub-agents</td>
+        </tr>
+        <tr>
+          <td>File output</td>
+          <td class="cross">Artifacts (copy/paste)</td>
+          <td class="check"><svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd"/></svg> Real files to your folder</td>
+        </tr>
+        <tr>
+          <td>Code execution</td>
+          <td class="cross">None</td>
+          <td class="check"><svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd"/></svg> Full sandboxed Linux VM</td>
+        </tr>
+        <tr>
+          <td>Data analysis</td>
+          <td class="cross">Limited (text-based)</td>
+          <td class="check"><svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd"/></svg> Python, pandas, charts</td>
+        </tr>
+        <tr>
+          <td>Connectors (Gmail, Slack…)</td>
+          <td class="check"><svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd"/></svg> Available</td>
+          <td class="check"><svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd"/></svg> Available + more powerful</td>
+        </tr>
+        <tr>
+          <td>Plugins &amp; skills</td>
+          <td class="cross">Skills only (via settings)</td>
+          <td class="check"><svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd"/></svg> Full plugin panel</td>
+        </tr>
+        <tr>
+          <td>Progress tracking</td>
+          <td class="cross">None</td>
+          <td class="check"><svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd"/></svg> Visual task list</td>
+        </tr>
+        <tr>
+          <td>Multi-step workflows</td>
+          <td class="cross">Single conversation</td>
+          <td class="check"><svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd"/></svg> Orchestrated workflows</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The short version: <strong>Chat is for conversations. Cowork is for workflows.</strong></p>
+    <p>If you're asking a question, refining copy, or brainstorming positioning — Chat is fine. If you're building a QBR deck, analyzing six months of pipeline data, or prepping competitive intelligence across multiple sources — that's Cowork territory.</p>
+
+    <div class="callout tip">
+      <div class="callout-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        GTM Leader Take
+      </div>
+      <p>The pattern I see across every GTM team I've advised: they start in Chat, hit a ceiling, and wonder why AI "isn't working." Cowork removes that ceiling. It's the difference between having a smart assistant you text and having one who sits at a desk and works.</p>
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section" id="section-3">
+    <div class="section-divider"></div>
+    <h2><span class="section-num">3.</span> Plugins and Skills for GTM</h2>
+    <p>When Anthropic unveiled AI tools automating legal and financial research in early 2026, legacy software stocks dropped $285 billion in a single day. Investors saw AI agents moving into the application layer — and repriced the entire software sector.</p>
+    <p>The plugins in your Cowork sidebar are part of what triggered that reaction. Here's what matters for GTM leaders.</p>
+
+    <h3>What Are Skills?</h3>
+    <p>Skills are reusable instruction manuals that teach Claude how to approach specific, repeatable tasks. Say "create a PowerPoint" and the pptx skill loads. Say "analyze this CSV" and the data exploration skill kicks in. You can also trigger skills explicitly — type <strong>/</strong> in Cowork for autocomplete.</p>
+    <p>Skills don't all load at once. Claude reads a short description of each (~100 tokens) to decide relevance, then loads full instructions only when needed. Your context window stays clean.</p>
+
+    <h3>GTM-Relevant Default Plugins</h3>
+    <p>Cowork ships with 11 plugins from Anthropic's knowledge-work-plugins. Here are the ones that matter most for GTM:</p>
+
+    <div class="plugin-grid">
+      <div class="plugin-card">
+        <div class="plugin-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>
+          </svg>
+        </div>
+        <div class="name">Sales</div>
+        <div class="desc">Pipeline review, call prep, account research, outreach drafts, forecasting</div>
+      </div>
+      <div class="plugin-card">
+        <div class="plugin-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 110-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 01-1.44-4.282m3.102.069a18.03 18.03 0 01-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 018.835 2.535M10.34 6.66a23.847 23.847 0 008.835-2.535m0 0A23.74 23.74 0 0018.795 3m.38 1.125a23.91 23.91 0 011.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 001.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 010 3.46"/>
+          </svg>
+        </div>
+        <div class="name">Marketing</div>
+        <div class="desc">Campaign planning, content creation, SEO audits, competitive briefs, brand voice</div>
+      </div>
+      <div class="plugin-card">
+        <div class="plugin-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>
+          </svg>
+        </div>
+        <div class="name">Data</div>
+        <div class="desc">Data exploration, SQL queries, dashboards, statistical analysis, visualization</div>
+      </div>
+      <div class="plugin-card">
+        <div class="plugin-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+        </div>
+        <div class="name">Product Mgmt</div>
+        <div class="desc">Roadmaps, feature specs, competitive analysis, metrics tracking, research synthesis</div>
+      </div>
+      <div class="plugin-card">
+        <div class="plugin-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div class="name">Customer Support</div>
+        <div class="desc">Ticket triage, escalation packaging, response drafting, KB articles</div>
+      </div>
+      <div class="plugin-card">
+        <div class="plugin-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </div>
+        <div class="name">Productivity</div>
+        <div class="desc">Task management, memory management, daily briefings</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Real Talk
+      </div>
+      <p>These aren't toys. The <strong>/call-prep</strong> skill pulls account context, researches attendees, and builds a suggested agenda. The <strong>/pipeline-review</strong> skill analyzes deal health, flags risks, and gives you a weekly action plan. I use both weekly.</p>
+    </div>
+
+    <h3>Where to Find More Skills</h3>
+    <ul class="link-list">
+      <li>
+        <span class="bullet">→</span>
+        <div>
+          <div class="link-name">anthropics/knowledge-work-plugins</div>
+          <div class="link-desc">Cowork's default plugin registry (11 business-role plugins)</div>
+        </div>
+      </li>
+      <li>
+        <span class="bullet">→</span>
+        <div>
+          <div class="link-name">anthropics/skills</div>
+          <div class="link-desc">Official repo: document skills (docx, xlsx, pptx, pdf) plus creative and enterprise examples</div>
+        </div>
+      </li>
+      <li>
+        <span class="bullet">→</span>
+        <div>
+          <div class="link-name">claudemarketplaces.com</div>
+          <div class="link-desc">A marketplace of marketplaces you can add to Cowork</div>
+        </div>
+      </li>
+      <li>
+        <span class="bullet">→</span>
+        <div>
+          <div class="link-name">skills.sh</div>
+          <div class="link-desc">Product strategy, pricing playbooks, discovery guides, PRD generators</div>
+        </div>
+      </li>
+      <li>
+        <span class="bullet">→</span>
+        <div>
+          <div class="link-name">sickn33/antigravity-awesome-skills</div>
+          <div class="link-desc">868+ universal skills including "Marketing &amp; Growth" bundles</div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="callout tip">
+      <div class="callout-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        Cross-Compatibility Note
+      </div>
+      <p>Same skill format works across Cowork, Code, Cursor, Windsurf, and Codex CLI. You can also load Code's developer plugins into Cowork and vice versa. But installing a plugin in one tab doesn't make it available in the other — they're isolated.</p>
+    </div>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section" id="section-4">
+    <div class="section-divider"></div>
+    <h2><span class="section-num">4.</span> MCPs: Connecting Cowork to Your GTM Stack</h2>
+    <p>MCP stands for Model Context Protocol — the open standard by Anthropic. Each MCP server exposes tools Claude can call. A Gmail MCP gives Claude <code>search_emails</code>, <code>send_email</code>, <code>read_email</code>. A HubSpot MCP gives it <code>search_contacts</code>, <code>get_deal</code>, <code>update_deal_stage</code>. You get the picture.</p>
+    <p>There are three ways to connect MCP servers to Claude, and understanding the difference matters for your GTM stack.</p>
+
+    <div class="mcp-types">
+      <div class="mcp-type">
+        <div class="label">Managed</div>
+        <div class="title">Remote Connectors</div>
+        <div class="info">One-click setup via Anthropic. Works everywhere incl. claude.ai. Gmail, Slack, etc.</div>
+      </div>
+      <div class="mcp-type">
+        <div class="label">Packaged</div>
+        <div class="title">Extensions</div>
+        <div class="info">Local MCP servers packaged for one-click install. Manage in Settings → Extensions.</div>
+      </div>
+      <div class="mcp-type">
+        <div class="label">Custom</div>
+        <div class="title">JSON Config</div>
+        <div class="info">Edit config file directly for CRM, outreach tools, custom internal APIs.</div>
+      </div>
+    </div>
+
+    <h3>GTM Stack Connections That Matter</h3>
+    <p>The connectors that change daily GTM workflows:</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <h4>Email (Gmail / Outlook)</h4>
+        <p>Search, read, draft, and send. Review inbound before meetings. Draft follow-ups from call notes.</p>
+      </div>
+      <div class="feature-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <h4>Slack</h4>
+        <p>Search channels, read threads, draft messages. Monitor deal rooms and competitive channels.</p>
+      </div>
+      <div class="feature-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <h4>Google Drive</h4>
+        <p>Search and read docs. Pull from competitive folders, battlecards, and enablement libraries.</p>
+      </div>
+      <div class="feature-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </div>
+        <h4>CRM (via custom MCP)</h4>
+        <p>Search contacts, pull deal data, analyze pipeline. Requires JSON config setup.</p>
+      </div>
+    </div>
+
+    <h3>Per-Tool Permissions</h3>
+    <p>This is the part most GTM leaders miss. For every connector, you can set individual tools to <strong>Allow</strong> (runs automatically), <strong>Ask</strong> (confirms before running), or <strong>Block</strong> (never runs).</p>
+    <p>Translation: you can let Claude search your email automatically but require approval before sending. Let it read Slack but block it from posting. This is how you build trust incrementally — and it's how I recommend every GTM leader start.</p>
+
+    <h3>Where to Find MCP Servers</h3>
+    <ul class="link-list">
+      <li>
+        <span class="bullet">→</span>
+        <div>
+          <div class="link-name">modelcontextprotocol.io/examples</div>
+          <div class="link-desc">Official MCP directory with reference implementations</div>
+        </div>
+      </li>
+      <li>
+        <span class="bullet">→</span>
+        <div>
+          <div class="link-name">github.com/modelcontextprotocol/servers</div>
+          <div class="link-desc">Official repo: filesystem, GitHub, Google Drive, Slack</div>
+        </div>
+      </li>
+      <li>
+        <span class="bullet">→</span>
+        <div>
+          <div class="link-name">mcp.so</div>
+          <div class="link-desc">MCP server registry with search and install instructions</div>
+        </div>
+      </li>
+      <li>
+        <span class="bullet">→</span>
+        <div>
+          <div class="link-name">punkpeye/awesome-mcp-servers</div>
+          <div class="link-desc">Community-curated list with hundreds of servers by category</div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="callout warning">
+      <div class="callout-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Windows Users
+      </div>
+      <p>If you installed Claude Desktop via the Microsoft Store (MSIX), the "Edit Config" button may open the wrong file. The app reads from the MSIX virtualized path, not %APPDATA%\Claude\. Check GitHub issue #26073 if your MCP servers silently fail to load.</p>
+    </div>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section" id="section-5">
+    <div class="section-divider"></div>
+    <h2><span class="section-num">5.</span> Scheduled Tasks</h2>
+    <p>You'll see this feature mentioned alongside Cowork — scheduled tasks that run on a cadence.</p>
+    <p>The vision is compelling for GTM: imagine a daily pipeline summary at 7am, a weekly competitive scan every Monday, or automated lead scoring runs. In practice? It's still unreliable in my testing.</p>
+
+    <div class="callout">
+      <div class="callout-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        My Recommendation
+      </div>
+      <p>For scheduled GTM automation — daily pipeline digests, weekly competitor monitoring, recurring report generation — <strong>n8n or an MCP-based approach will serve you better right now.</strong> I expect this to mature fast, but today it's not something I'd bet a revenue process on.</p>
+    </div>
+
+    <p>When it stabilizes, this is where things get really interesting for RevOps. Automated forecast pulls, CRM hygiene checks, deal alerts based on custom criteria. Keep an eye on it.</p>
+  </div>
+
+  <!-- Section 6 -->
+  <div class="section" id="section-6">
+    <div class="section-divider"></div>
+    <h2><span class="section-num">6.</span> A 1-Minute Hack That Makes Claude Desktop 2x More Powerful</h2>
+    <p>I genuinely can't believe more people in GTM don't know about Desktop Commander. It's the highest-ROI move you can make. Takes less than 60 seconds.</p>
+
+    <ol class="steps">
+      <li>Open Claude Desktop</li>
+      <li>In a chat window click: <strong>"+ → Connectors → Manage connectors"</strong></li>
+      <li>Click: <strong>"Browse connectors → All → Desktop Commander"</strong></li>
+      <li>Select which tools don't require your approval</li>
+    </ol>
+
+    <p>The result: Chat, Cowork, and Code Tab can do virtually anything on your laptop — including installing MCP servers or accessing any file.</p>
+
+    <div class="scenario">
+      <div class="scenario-header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+        GTM Use Case Example
+      </div>
+      <div class="scenario-prompt">"Go to the G2 page for [competitor], pull the top 10 negative reviews from the last 6 months, and build me a battlecard in Word format."</div>
+      <div class="scenario-result">
+        <ul>
+          <li>Claude navigates the web, extracts review data</li>
+          <li>Analyzes sentiment and categorizes objections</li>
+          <li>Creates a formatted .docx battlecard with objection-by-objection talk tracks</li>
+          <li>Drops it directly into your shared folder</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        Pro Tips
+      </div>
+      <p><strong>Disable the Claude in Chrome extension when not needed</strong> — Claude sometimes defaults to web-based actions even when it has a dedicated MCP connector. Toggle it off when doing local work.</p>
+      <p style="margin-top: 10px;"><strong>Start with "Ask" permission for everything</strong>, then selectively move to "Allow" as you build confidence. None of these tools can take actions on their own unprompted.</p>
+    </div>
+  </div>
+
+  <!-- Section 7 -->
+  <div class="section" id="section-7">
+    <div class="section-divider"></div>
+    <h2><span class="section-num">7.</span> How to Give Claude Cowork Cross-Session Memory</h2>
+    <p>This is the one that changes everything for GTM leaders. By default, every Cowork session starts fresh. It doesn't remember your ICP, your competitive landscape, your deal stages, or your naming conventions. Two simple steps fix this.</p>
+
+    <ol class="steps">
+      <li>Enable Desktop Commander extension in <strong>"Settings → Connectors"</strong></li>
+      <li>Copy the prompt below to <strong>"Settings → Cowork → Global instructions"</strong></li>
+    </ol>
+
+    <div class="code-block">
+<span class="comment">## Memory Management</span>
+When you discover something valuable for future sessions —
+competitive intel, deal context, ICP definitions, messaging
+frameworks, account notes — <span class="key">immediately</span> append it to
+<span class="string">{your_folder}/memory.md</span>
+Don't wait to be asked. Don't wait for session end.
+Keep entries short: date, what, why.
+<span class="key">Read this file at the start of every session.</span>
+    </div>
+
+    <p>This costs almost zero tokens and survives crashes, compaction, and new sessions.</p>
+
+    <h3>Advanced: Structured Memory for GTM</h3>
+    <p>For revenue leaders managing complex deal cycles, split into multiple files so Claude loads only what's relevant:</p>
+
+    <div class="code-block">
+<span class="comment">## GTM Memory System</span>
+Maintain a structured memory rooted at <span class="string">.claude/memory/</span>
+<span class="key">### Structure</span>
+- <span class="string">memory.md</span>          — index of all memory files
+- <span class="string">general.md</span>         — ICP definitions, team structure, tool preferences
+- <span class="string">competitors/{name}.md</span> — per-competitor intel and positioning
+- <span class="string">accounts/{name}.md</span>  — key account context and history
+- <span class="string">playbooks/{type}.md</span> — messaging frameworks, objection handling
+- <span class="string">metrics.md</span>          — KPIs, targets, historical benchmarks
+<span class="key">### Rules</span>
+1. When you learn something worth remembering, write it immediately
+2. Keep memory.md as a current index with one-line descriptions
+3. Entries: date, what, why — nothing more
+4. Read memory.md at session start. Load others only when relevant
+5. If a file doesn't exist yet, create it
+<span class="key">### Maintenance</span>
+When I say "reorganize memory":
+1. Read all memory files
+2. Remove duplicates and outdated entries
+3. Merge related entries
+4. Update memory.md index
+5. Show me a summary of what changed
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+        What This Looks Like in Practice
+      </div>
+      <div class="scenario-prompt">.claude/memory/competitors/gong.md</div>
+      <div class="scenario-result" style="font-family: 'JetBrains Mono', monospace; font-size: 0.79rem; line-height: 1.85; color: var(--text-secondary);">
+        ## Gong<br><br>
+        - 2026-02-10: Gong raised pricing 22% on renewals — multiple prospects mentioned this unprompted<br>
+        - 2026-02-14: New "AI coaching" feature launched, positioning heavily against Chorus<br>
+        - 2026-02-18: Lost deal at Acme Corp — they chose Gong for "executive reporting" specifically<br>
+        - 2026-02-20: G2 satisfaction score dropped from 4.7 to 4.5 — implementation complaints increasing
+      </div>
+    </div>
+
+    <p>Now every time you open Cowork, it already knows your competitive landscape, your accounts, and your playbooks. No more re-explaining context. This is the closest thing to having an AI teammate who actually remembers.</p>
+  </div>
+
+  <!-- Bottom CTA -->
+  <div class="bottom-cta">
+    <h3>Start Using Cowork for GTM Today</h3>
+    <p>Cowork is available now on Pro, Max, Team, and Enterprise plans across all platforms.</p>
+    <div class="cta-buttons">
+      <a href="https://www.aibusinessnetwork.ai/" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        AI Business Network
+      </a>
+      <a href="https://www.gtmaiacademy.com/" class="btn btn-secondary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        GTM AI Academy
+      </a>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer>
+  <p>Written by <a href="https://www.linkedin.com/in/jonathandavidmoss/">Jonathan Moss</a> &nbsp;·&nbsp; <a href="https://www.aibusinessnetwork.ai/">AI Business Network</a> &nbsp;·&nbsp; February 2026</p>
+</footer>
+
+<!-- Back to Top -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"/>
+  </svg>
+</button>
+
+<script>
+  // Reading progress bar
+  const progressBar = document.getElementById('progressBar');
+  const backToTop = document.getElementById('backToTop');
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = Math.min(progress, 100) + '%';
+
+    // Back to top visibility
+    if (scrollTop > 400) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  });
+
+  // TOC active section highlighting
+  const sections = document.querySelectorAll('.section[id]');
+  const tocLinks = document.querySelectorAll('.toc a[href^="#"]');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        tocLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(section => observer.observe(section));
+</script>
+</body>
+</html>
